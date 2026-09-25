@@ -7,6 +7,18 @@
 
 const REQUIRED = ['nome', 'email', 'telefone'];
 
+// Telemóvel PT (91/92/93/96 + 7 dígitos), com ou sem +351; outros países: 8 a 15 dígitos (E.164)
+function normTel(v) {
+  let t = String(v || '').replace(/[\s.\-()\/]/g, '');
+  if (t.startsWith('00')) t = '+' + t.slice(2);
+  if (!/^\+?\d+$/.test(t)) return null;
+  const fmt = (n) => '+351 ' + n.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
+  if (t[0] !== '+') return /^9[1236]\d{7}$/.test(t) ? fmt(t) : null;
+  const dg = t.slice(1);
+  if (dg.startsWith('351')) { const n = dg.slice(3); return /^9[1236]\d{7}$/.test(n) ? fmt(n) : null; }
+  return dg.length >= 8 && dg.length <= 15 && dg[0] !== '0' ? '+' + dg : null;
+}
+
 exports.handler = async (event) => {
   const headers = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
 
@@ -32,6 +44,17 @@ exports.handler = async (event) => {
       return { statusCode: 422, headers, body: JSON.stringify({ ok: false, error: 'missing_' + k }) };
     }
   }
+
+  // Mesma validação do formulário (proteção contra envios que contornem o browser)
+  const tel = normTel(data.telefone);
+  const email = String(data.email || '').trim().toLowerCase();
+  const emailRe = /^[a-z0-9](?:[a-z0-9._%+'\-]{0,62}[a-z0-9_\-])?@(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.)+[a-z]{2,24}$/;
+  if (!tel) return { statusCode: 422, headers, body: JSON.stringify({ ok: false, error: 'invalid_phone' }) };
+  if (email.length > 254 || !emailRe.test(email) || email.includes('..') || /\.(con|cmo|comm|coom|cpm|ocm)$/.test(email)) {
+    return { statusCode: 422, headers, body: JSON.stringify({ ok: false, error: 'invalid_email' }) };
+  }
+  data.telefone = tel;
+  data.email = email;
 
   // Limita o tamanho de cada campo e junta dados do servidor.
   const clean = {};

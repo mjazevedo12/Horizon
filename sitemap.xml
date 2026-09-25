@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://boavistahorizon.casadaportela.pt/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://boavistahorizon.casadaportela.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://boavistahorizon.casadaportela.pt/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://boavistahorizon.casadaportela.pt/"/>
+    <image:image><image:loc>https://boavistahorizon.casadaportela.pt/Imagens/Exterior/BROCHURA%2001.jpg</image:loc></image:image>
+    <image:image><image:loc>https://boavistahorizon.casadaportela.pt/Imagens/Interior/Brochura8.jpg</image:loc></image:image>
+    <image:image><image:loc>https://boavistahorizon.casadaportela.pt/Imagens/Exterior/Brochura17.jpg</image:loc></image:image>
+    <image:image><image:loc>https://boavistahorizon.casadaportela.pt/Imagens/Interior/5.%20cozinha.webp</image:loc></image:image>
+    <image:image><image:loc>https://boavistahorizon.casadaportela.pt/Imagens/Interior/6.%20suite%20master.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://boavistahorizon.casadaportela.pt/?lang=en</loc>
+    <lastmod>2026-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://boavistahorizon.casadaportela.pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://boavistahorizon.casadaportela.pt/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://boavistahorizon.casadaportela.pt/"/>
+  </url>
+</urlset>
