@@ -1,4 +1,4 @@
-// Boavista 5205 — recebe o formulário e reencaminha para o Google Apps Script.
+// Boavista Horizon — recebe o formulário e reencaminha para o Google Apps Script.
 // O URL do Apps Script fica na variável de ambiente APPS_SCRIPT_URL do Netlify
 // (Site configuration → Environment variables). Nunca colocar o URL no HTML.
 //
