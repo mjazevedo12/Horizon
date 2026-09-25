@@ -1,4 +1,4 @@
-# Boavista Horizon — Casa da Portela
+# Boavista 5205 — Casa da Portela
 User-agent: *
 Allow: /
 Disallow: /enviar-pedido
@@ -23,4 +23,4 @@ Allow: /
 Disallow: /enviar-pedido
 Disallow: /.netlify/
 
-Sitemap: https://boavistahorizon.casadaportela.pt/sitemap.xml
+Sitemap: https://boavista5205.casadaportela.pt/sitemap.xml

@@ -1,5 +1,5 @@
 /**
- * Boavista Horizon — Google Apps Script para gravar leads numa Google Sheet.
+ * Boavista 5205 — Google Apps Script para gravar leads numa Google Sheet.
  *
  * Como usar:
  * 1. Criar (ou abrir) a Google Sheet de leads → Extensões → Apps Script.

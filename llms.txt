@@ -1,4 +1,4 @@
-# Boavista Horizon
+# Boavista 5205
 
 > Empreendimento residencial em construção na Boavista, junto à Foz do Porto (Portugal), a cerca de 100 metros das praias e em frente ao Parque da Cidade. Quatro residências T4 em duplex, três disponíveis, cada uma com entrada, elevador e garagem próprios. Comercialização da Casa da Portela Imobiliária.
 
@@ -57,10 +57,10 @@ Sim. Agendamos uma apresentação do projeto, com plantas e acabamentos, e a vis
 
 ## Links
 
-- [Página do empreendimento (PT)](https://boavistahorizon.casadaportela.pt/)
-- [Página do empreendimento (EN)](https://boavistahorizon.casadaportela.pt/?lang=en)
-- [Residências e preços](https://boavistahorizon.casadaportela.pt/#residencias)
-- [Marcar visita](https://boavistahorizon.casadaportela.pt/#contacto)
+- [Página do empreendimento (PT)](https://boavista5205.casadaportela.pt/)
+- [Página do empreendimento (EN)](https://boavista5205.casadaportela.pt/?lang=en)
+- [Residências e preços](https://boavista5205.casadaportela.pt/#residencias)
+- [Marcar visita](https://boavista5205.casadaportela.pt/#contacto)
 - [Casa da Portela](https://www.casadaportela.pt/)
 
 Valores e áreas indicativos, sujeitos a confirmação. Imagens meramente ilustrativas.
