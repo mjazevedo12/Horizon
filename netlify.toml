@@ -20,6 +20,12 @@
     Cache-Control = "public, max-age=2592000"
 
 [[headers]]
+  for = "/Brochura/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"

@@ -3,6 +3,7 @@ User-agent: *
 Allow: /
 Disallow: /enviar-pedido
 Disallow: /.netlify/
+Disallow: /Brochura/
 
 # Motores de busca e assistentes de IA explicitamente autorizados
 User-agent: Googlebot
@@ -22,5 +23,6 @@ User-agent: meta-externalagent
 Allow: /
 Disallow: /enviar-pedido
 Disallow: /.netlify/
+Disallow: /Brochura/
 
 Sitemap: https://boavistahorizon.casadaportela.pt/sitemap.xml

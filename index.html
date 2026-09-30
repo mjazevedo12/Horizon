@@ -326,6 +326,8 @@ p{margin:0 0 1em}
 .msg.ok{color:var(--sand)}
 .form-done{display:none;padding:40px 0}
 .form-done.show{display:block}
+.form-done .bro{margin-top:26px;padding-top:26px;border-top:1px solid var(--line-dark)}
+.form-done .bro .lead{margin-bottom:20px}
 .form-done b{font-family:var(--display);font-weight:400;font-size:34px;display:block;margin-bottom:12px}
 
 /* ---------- Footer ---------- */
@@ -1388,7 +1390,7 @@ body.ck-open .wa{bottom:100px}
     <div class="rv">
       <p class="eyebrow" data-i18n="ct.eyebrow">Contacto</p>
       <h2 class="h2" data-i18n="ct.title">Agende a sua visita.</h2>
-      <p class="lead" style="margin-top:24px" data-i18n="ct.p">Deixe-nos os seus contactos. Enviaremos a brochura, as plantas e a tabela de preços, e agendaremos consigo uma visita personalizada.</p>
+      <p class="lead" style="margin-top:24px" data-i18n="ct.p">Deixe-nos os seus contactos para descarregar de imediato a brochura ou agendar connosco uma visita personalizada.</p>
       <div class="agent">
         <b id="agName">Miguel Portela</b>
         <a id="agTel" href="tel:+351910330640" data-track="click_phone">+351 910 330 640 <small class="tel-note" data-i18n="ct.custo">Rede móvel nacional</small></a>
@@ -1413,7 +1415,7 @@ body.ck-open .wa{bottom:100px}
         <div class="fld"><label for="f-int" data-i18n="f.int">Pretendo</label>
           <select id="f-int" name="pretendo">
             <option value="Agendar visita" data-i18n="f.i1">Agendar visita</option>
-            <option value="Receber brochura e plantas" data-i18n="f.i2">Receber brochura e plantas</option>
+            <option value="Descarregar a brochura" data-i18n="f.i2">Descarregar a brochura</option>
             <option value="Pedir informações" data-i18n="f.i3">Solicitar mais informações</option>
             <option value="Agendar reunião" data-i18n="f.i4">Agendar reunião</option>
           </select></div>
@@ -1435,6 +1437,10 @@ body.ck-open .wa{bottom:100px}
       <div class="form-done" id="formDone" tabindex="-1">
         <b data-i18n="f.doneT">Pedido recebido.</b>
         <p class="lead" data-i18n="f.done">Obrigado pelo seu interesse. A nossa equipa entrará em contacto consigo com a maior brevidade.</p>
+        <div class="bro" id="broBox" hidden>
+          <p class="lead" data-i18n="f.broP">A transferência da brochura começou. Se não iniciar automaticamente, utilize o botão abaixo.</p>
+          <a class="btn btn-sand" id="broBtn" href="#" download data-i18n="f.broB">Descarregar brochura (PDF)</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1448,7 +1454,6 @@ body.ck-open .wa{bottom:100px}
       <div>
         <a class="mark" href="#top" aria-label="Boavista Horizon"><span class="mark-a">BOAVISTA</span><span class="mark-l"></span><span class="mark-b">HORIZON</span></a>
         <p class="disc" style="margin-top:22px" data-i18n="ftr.disc">Imagens meramente ilustrativas e não vinculativas. A decoração, o mobiliário e as vistas apresentados não fazem parte da proposta. Áreas e valores indicativos, sujeitos a confirmação.</p>
-        <p class="disc" id="energia" hidden></p>
       </div>
       <div>
         <p class="ftr-h" data-i18n="ftr.com">Comercialização</p>
@@ -1550,7 +1555,9 @@ var CONFIG = {
   empreendimento: 'Boavista Horizon',
   endpoint: '/enviar-pedido',          // Netlify: redireciona para a função lead.js
   whatsapp: '351910330640',            // só dígitos, com indicativo
-  energia: ''                          // ex.: 'A' — preencher com a classe do pré-certificado energético
+  // Brochura: coloque o PDF na pasta Brochura com este nome. A versão EN é opcional
+  // (se não existir, os visitantes em inglês descarregam a versão PT).
+  brochura: { pt: 'Brochura/Boavista-Horizon-Brochura.pdf', en: 'Brochura/Boavista-Horizon-Brochure-EN.pdf' }
 };
 
 /* Plantas: compartimentos por residência (PT | EN | m²) */
@@ -1612,10 +1619,10 @@ var EN = {
   'q7':'Is the development certified?','a7':'Yes. The development will be certified for technical construction quality and sustainability, overseen by an independent body. Certification is awarded on completion.',
   'q8':'Can I arrange a viewing?','a8':'Yes. We present the project in detail, with floor plans and finishes, and arrange a site visit according to the construction stage. Simply complete the form to book.',
  
-  'ct.eyebrow':'Contact','ct.title':'Arrange your viewing.','ct.p':'Leave us your details. We will send you the brochure, floor plans and price list, and arrange a private viewing with you.','ct.wa':'WhatsApp','ct.custo':'Portuguese mobile network',
-  'f.nome':'Name *','f.tel':'Mobile *','f.email':'Email *','f.res':'Residence of interest','f.ind':'No preference','f.int':'I would like to','f.i1':'Book a viewing','f.i2':'Receive the brochure and floor plans','f.i3':'Request further information','f.i4':'Book a meeting','f.data':'Preferred date','f.pref':'Preferred contact','f.p1':'Phone','f.msg':'Message (optional)',
+  'ct.eyebrow':'Contact','ct.title':'Arrange your viewing.','ct.p':'Leave us your details to download the brochure straight away or to arrange a private viewing with us.','ct.wa':'WhatsApp','ct.custo':'Portuguese mobile network',
+  'f.nome':'Name *','f.tel':'Mobile *','f.email':'Email *','f.res':'Residence of interest','f.ind':'No preference','f.int':'I would like to','f.i1':'Book a viewing','f.i2':'Download the brochure','f.i3':'Request further information','f.i4':'Book a meeting','f.data':'Preferred date','f.pref':'Preferred contact','f.p1':'Phone','f.msg':'Message (optional)',
   'f.ok':'I have read and accept the <a href="#privacidade" data-open="privacy">privacy policy</a> and agree to be contacted by Casa da Portela about this request.',
-  'f.send':'Send request','f.doneT':'Request received.','f.done':'Thank you for your interest. Our team will be in touch with you shortly.',
+  'f.send':'Send request','f.broP':'Your brochure download has started. If it does not begin automatically, please use the button below.','f.broB':'Download brochure (PDF)','f.doneT':'Request received.','f.done':'Thank you for your interest. Our team will be in touch with you shortly.',
   'ftr.disc':'Images are for illustration only and are not binding. Decoration, furniture and views shown are not part of the offer. Areas and prices are indicative and subject to confirmation.',
   'ftr.com':'Sales','ftr.cert':'Certification','ftr.iso':'Casa da Portela is ISO 9001:2015 certified.','ftr.priv':'Privacy policy','ftr.ck':'Manage cookies','ftr.lr':'Complaints Book',
   'pl.fine':'Floor plans are architectural drawings; all dimensions are approximate and subject to normal construction variances and tolerances.',
@@ -1651,7 +1658,6 @@ var EN = {
     $$('[data-i18n-aria]').forEach(function(el){ var k = el.getAttribute('data-i18n-aria'); var v = lang === 'en' && EN[k] ? EN[k] : PT['aria:'+k]; if (v) el.setAttribute('aria-label', v); });
     if (window.__revalidate) window.__revalidate();
     $$('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
-    var e = $('#energia'); if (CONFIG.energia){ e.hidden = false; e.textContent = (lang === 'en' ? 'Energy rating (pre-certificate): ' : 'Classe energética (pré-certificado): ') + CONFIG.energia; }
     $$('[data-eur]').forEach(function(el){
       var n = +el.getAttribute('data-eur');
       var f = lang === 'en' ? '€' + n.toLocaleString('en-GB') : n.toLocaleString('de-DE') + ' €';
@@ -1838,6 +1844,7 @@ var EN = {
     if (u) fRes.value = u;
     if (it === 'visita') fInt.value = 'Agendar visita';
     if (it === 'info') fInt.value = 'Pedir informações';
+    if (it === 'brochura') fInt.value = 'Descarregar a brochura';
     syncDate();
     if (a.closest('#plb')) closeLayers();
     push('cta_click', { cta: it || 'contacto', residencia: u || '' });
@@ -1944,12 +1951,30 @@ var EN = {
       .then(function(){
         push('generate_lead', { residencia: payload.residencia, pretendo: payload.pretendo, origem: payload.origem, language: lang });
         form.style.display = 'none'; var done = $('#formDone'); done.classList.add('show'); done.focus();
+        if (/brochura/i.test(payload.pretendo)) startBrochure();
       })
       .catch(function(){
         send.disabled = false;
         msg(lang === 'en' ? 'We could not send your request. Please try again, or call us on +351 910 330 640.' : 'Não foi possível enviar o pedido. Tente novamente ou ligue-nos para o +351 910 330 640.');
       });
   });
+
+  /* ---------- Brochura: descarrega após o envio do formulário ---------- */
+  function startBrochure(){
+    var want = CONFIG.brochura && (lang === 'en' ? CONFIG.brochura.en : CONFIG.brochura.pt);
+    if (!want) return;
+    function exists(u){ return fetch(u, { method: 'HEAD', cache: 'no-store' }).then(function(r){ return r.ok ? u : null; }).catch(function(){ return null; }); }
+    exists(want).then(function(u){ return u || (want !== CONFIG.brochura.pt ? exists(CONFIG.brochura.pt) : null); }).then(function(u){
+      if (!u) return;                                   // ainda sem PDF: fica só a mensagem de agradecimento
+      var name = lang === 'en' ? 'Boavista Horizon - Brochure.pdf' : 'Boavista Horizon - Brochura.pdf';
+      var btn = $('#broBtn'); btn.href = u; btn.setAttribute('download', name);
+      $('#broBox').hidden = false;
+      var a = document.createElement('a'); a.href = u; a.download = name; a.rel = 'noopener';
+      document.body.appendChild(a); a.click(); a.remove();
+      push('brochure_download', { language: lang, residencia: fRes.value });
+    });
+  }
+  $('#broBtn').addEventListener('click', function(){ push('brochure_download_click', { language: lang }); });
 
   /* ---------- Cookies ---------- */
   var ck = $('#ck');
