@@ -369,6 +369,20 @@ p{margin:0 0 1em}
 .pl li span:first-child{color:var(--grey);min-width:26px}
 .pl li span:nth-child(2){flex:1}
 .pl li span:last-child{font-variant-numeric:tabular-nums}
+.pl-more{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:8px}
+.pl-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;background:none;border:0;padding:16px 0;cursor:pointer;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink);text-align:left}
+.pl-toggle i{position:relative;width:12px;height:12px;flex:0 0 auto}
+.pl-toggle i::before,.pl-toggle i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:currentColor;transition:transform .3s var(--ease)}
+.pl-toggle i::after{transform:rotate(90deg)}
+.pl-more.open .pl-toggle i::after{transform:rotate(0)}
+.pl-list{display:none;padding-bottom:16px}
+.pl-list h4:first-child{margin-top:4px}
+.pl-more.open .pl-list{display:block}
+@media (hover:hover) and (pointer:fine){
+  .pl-more:hover .pl-list{display:block}
+  .pl-more:hover .pl-toggle i::after{transform:rotate(0)}
+  .pl-toggle:hover{color:var(--sand-ink)}
+}
 .pl .fine{margin-top:16px;font-size:11px}
 .pl .btn{width:100%;margin-top:18px}
 
@@ -419,6 +433,7 @@ body.ck-open .wa{bottom:100px}
   .terms div{padding:22px 0;border-bottom:1px solid var(--line)}
   .pl{grid-template-columns:1fr}
   .pl-img img{max-height:60vh}
+  .pl-img{position:static}
   .wa{display:none}
   .mbar{display:grid;grid-template-columns:1fr 56px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--navy);border-top:1px solid var(--line-dark);transform:translateY(100%);transition:transform .4s var(--ease)}
   .mbar.show{transform:none}
@@ -1503,8 +1518,13 @@ body.ck-open .wa{bottom:100px}
     <div>
       <h3 id="plTitle" class="num">A1</h3>
       <p class="unit-type" id="plType"></p>
-      <h4><span data-i18n="svg.l0">Piso 0</span> · <span id="plA0" style="text-transform:none"></span></h4><ol id="plL0"></ol>
-      <h4><span data-i18n="svg.l1">Piso -1</span> · <span id="plA1" style="text-transform:none"></span></h4><ol id="plL1"></ol>
+      <div class="pl-more" id="plMore">
+        <button class="pl-toggle" type="button" id="plToggle" aria-expanded="false" aria-controls="plList"><span data-i18n="pl.more">Ver áreas por divisão</span><i aria-hidden="true"></i></button>
+        <div class="pl-list" id="plList">
+          <h4><span data-i18n="svg.l0">Piso 0</span> · <span id="plA0" style="text-transform:none"></span></h4><ol id="plL0"></ol>
+          <h4><span data-i18n="svg.l1">Piso -1</span> · <span id="plA1" style="text-transform:none"></span></h4><ol id="plL1"></ol>
+        </div>
+      </div>
       <p class="fine" data-i18n="pl.fine">As plantas constituem bases de arquitetura; todas as dimensões são aproximadas e estão sujeitas às variações e tolerâncias normais de construção.</p>
       <a class="btn btn-navy" href="#contacto" id="plCta" data-intent="info" data-i18n="cta.info">Solicitar informações</a>
     </div>
@@ -1625,7 +1645,7 @@ var EN = {
   'f.send':'Send request','f.broP':'Your brochure download has started. If it does not begin automatically, please use the button below.','f.broB':'Download brochure (PDF)','f.doneT':'Request received.','f.done':'Thank you for your interest. Our team will be in touch with you shortly.',
   'ftr.disc':'Images are for illustration only and are not binding. Decoration, furniture and views shown are not part of the offer. Areas and prices are indicative and subject to confirmation.',
   'ftr.com':'Sales','ftr.cert':'Certification','ftr.iso':'Casa da Portela is ISO 9001:2015 certified.','ftr.priv':'Privacy policy','ftr.ck':'Manage cookies','ftr.lr':'Complaints Book',
-  'pl.fine':'Floor plans are architectural drawings; all dimensions are approximate and subject to normal construction variances and tolerances.',
+  'pl.more':'View room-by-room areas','pl.fine':'Floor plans are architectural drawings; all dimensions are approximate and subject to normal construction variances and tolerances.',
   'ck.p':'We use cookies to analyse how the site is used and to improve our communication. You can accept or decline. <a href="#privacidade" data-open="privacy">Learn more</a>','ck.no':'Decline','ck.yes':'Accept',
   'priv.body':'<h2 id="privT">Privacy and cookie policy</h2><p>Last updated: September 2026</p><h3>1. Data controller</h3><p>J.M. Portela — Mediação Imobiliária, Lda. (Casa da Portela), tax no. 510940390, AMI 10340. Privacy contact: <a href="mailto:mportela@casadaportela.pt">mportela@casadaportela.pt</a>.</p><h3>2. Data collected</h3><p>Name, email, phone, residence of interest, contact preferences and your message. We also automatically record where your visit came from (for example, the campaign or site that brought you here) and the page language.</p><h3>3. Purpose and legal basis</h3><p>To answer your request, send you information about the development and arrange visits or meetings. The legal basis is your consent, which you may withdraw at any time.</p><h3>4. Retention</h3><p>Data is kept for as long as needed to handle your request and for no more than 24 months after the last contact, unless the law requires otherwise.</p><h3>5. Sharing</h3><p>Your data is never sold. It may be processed by hosting and form-management providers acting on behalf of Casa da Portela.</p><h3>6. Cookies and measurement</h3><p>We use measurement and advertising cookies (Google and Meta) only if you accept them. Until then, these tools run with consent denied. You can change your choice at any time under “Manage cookies” in the footer.</p><h3>7. Your rights</h3><p>You may request access, rectification, erasure, restriction or portability of your data, and object to its processing, using the contact above. You may also lodge a complaint with the CNPD (www.cnpd.pt).</p><h3>8. Changes</h3><p>This policy may be updated. The date of the last update is shown at the top.</p>'
 };
@@ -1829,9 +1849,15 @@ var EN = {
       $('#plL0').innerHTML = rows(ROOMS.base0, p.f0);
       $('#plL1').innerHTML = rows(ROOMS.base1, p.f1);
       $('#plCta').setAttribute('data-unit', id);
+      $('#plMore').classList.remove('open'); $('#plToggle').setAttribute('aria-expanded', 'false');
       lastFocus = b; openLayer($('#plb'));
       push('view_floor_plan', { residencia: id });
     });
+  });
+
+  $('#plToggle').addEventListener('click', function(){
+    var o = $('#plMore').classList.toggle('open'); this.setAttribute('aria-expanded', o);
+    if (o) push('view_room_areas', { residencia: $('#plTitle').textContent });
   });
 
   /* ---------- Pré-seleção no formulário ---------- */
